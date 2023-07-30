@@ -1,9 +1,7 @@
 FROM ubuntu:22.04
 
 ARG USER_NAME="user"
-ARG USER_ID="1500"
 ARG GROUP_NAME="group"
-ARG GROUP_ID="1500"
 ARG PASSWORD="password"
 
 ARG USER_NAME USER_ID GROUP_NAME GROUP_ID PASSWORD IMAGE_NAME
@@ -18,8 +16,8 @@ RUN if [ -z "${USER_NAME}"  ] || \
 RUN apt update -y
 
 # add user and group
-RUN groupadd -g ${GROUP_ID} ${GROUP_NAME}
-RUN useradd -u ${USER_ID} -g ${GROUP_ID} -m ${USER_NAME}
+RUN groupadd ${GROUP_NAME}
+RUN useradd -g ${GROUP_NAME} -m ${USER_NAME}
 RUN echo "$USER_NAME:$PASSWORD" | chpasswd
 
 # ESP-IDF Prerequisites
