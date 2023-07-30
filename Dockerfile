@@ -2,9 +2,8 @@ FROM ubuntu:22.04
 
 ARG USER_NAME="user"
 ARG GROUP_NAME="group"
-ARG PASSWORD="password"
 
-ARG USER_NAME USER_ID GROUP_NAME GROUP_ID PASSWORD IMAGE_NAME
+ARG USER_NAME GROUP_NAME IMAGE_NAME
 
 RUN if [ -z "${USER_NAME}"  ] || \
        [ -z "${IMAGE_NAME}"   ];   \
@@ -18,7 +17,6 @@ RUN apt update -y
 # add user and group
 RUN groupadd ${GROUP_NAME}
 RUN useradd -g ${GROUP_NAME} -m ${USER_NAME}
-RUN echo "$USER_NAME:$PASSWORD" | chpasswd
 
 # ESP-IDF Prerequisites
 RUN apt install -y git wget flex bison gperf python3 python3-venv cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0
