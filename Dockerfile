@@ -1,9 +1,8 @@
 FROM ubuntu:22.04
 
-ARG USER_NAME="user"
-ARG GROUP_NAME="group"
-
-ARG USER_NAME GROUP_NAME IMAGE_NAME
+ARG USER_NAME="builder"
+ARG GROUP_NAME="builder"
+ARG IMAGE_NAME
 
 RUN if [ -z "${USER_NAME}"  ] || \
        [ -z "${IMAGE_NAME}"   ];   \
@@ -22,7 +21,7 @@ RUN useradd -g ${GROUP_NAME} -m ${USER_NAME}
 RUN apt install -y git wget flex bison gperf python3 python3-venv cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0
 
 # Get ESP-IDF
-USER ${USER_ID}
+USER ${USER_NAME}
 RUN mkdir -p ~/esp
 RUN git clone --recursive https://github.com/espressif/esp-idf.git -b v5.0.2 ~/esp/esp-idf
 

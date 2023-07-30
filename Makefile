@@ -1,9 +1,7 @@
 DOCKER_USERNAME ?= wurly
 DOCKER_IMAGE_NAME ?= builder_esp32_esp-idf-v5
 
-BUILD_ARGS := 	--build-arg USER_NAME=${DOCKER_USERNAME} \
-				--build-arg GROUP_NAME=${DOCKER_USERNAME} \
-				--build-arg IMAGE_NAME=${DOCKER_IMAGE_NAME}
+BUILD_ARGS := --build-arg IMAGE_NAME=${DOCKER_IMAGE_NAME}
 
 .PHONY: build
 build:
