@@ -9,7 +9,7 @@ build:
 
 .PHONY: push
 push:
-	docker login -u $(DOCKER_USERNAME)
+	echo ${DOCKER_PASSWORD} | docker login -u $(DOCKER_USERNAME) --password-stdin
 	docker push $(DOCKER_USERNAME)/$(DOCKER_IMAGE_NAME):latest
 
 .PHONY: ci-cd
@@ -21,5 +21,5 @@ build-tag:
 
 .PHONY: push-tag
 push-tag:
-	docker login -u $(DOCKER_USERNAME)
+	echo ${DOCKER_PASSWORD} | docker login -u $(DOCKER_USERNAME) --password-stdin
 	docker push $(DOCKER_USERNAME)/$(DOCKER_IMAGE_NAME):$(TAG)
