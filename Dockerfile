@@ -18,8 +18,8 @@ RUN if [ -z "${USER_NAME}"  ] || \
 RUN apt update -y
 
 # add user and group
-RUN groupadd -g $GROUP_ID $GROUP_NAME
-RUN useradd -u $USER_ID -g $GROUP_ID -m $USER_NAME
+RUN groupadd -g ${GROUP_ID} ${GROUP_NAME}
+RUN useradd -u ${USER_ID} -g ${GROUP_ID} -m ${USER_NAME}
 RUN echo "$USER_NAME:$PASSWORD" | chpasswd
 
 # ESP-IDF Prerequisites
